@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contagem para o Lançamento</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #121212;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+.container {
+    background: #1e1e1e;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+#contador {
+    font-size: 2rem;
+    font-weight: bold;
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🚀 Contagem para o Lançamento do Servidor</h1>
+    <div id="contador">Carregando...</div>
+</div>
+
+<script>
+const dataLancamento = new Date("2026-07-05T14:00:00");
+
+function atualizarContador() {
+    const agora = new Date();
+    const diferenca = dataLancamento - agora;
+
+    if (diferenca <= 0) {
+        document.getElementById("contador").innerHTML =
+            "🎉 O servidor já foi lançado!";
+        return;
+    }
+
+    const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
+
+    document.getElementById("contador").innerHTML =
+        `${dias} dias ${horas} horas ${minutos} minutos ${segundos} segundos`;
+}
+
+atualizarContador();
+setInterval(atualizarContador, 1000);
+</script>
+
+</body>
+</html>
